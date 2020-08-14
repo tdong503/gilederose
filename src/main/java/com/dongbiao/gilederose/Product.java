@@ -12,4 +12,12 @@ import lombok.NoArgsConstructor;
 public class Product {
     private Integer sellIn;
     private Integer quality;
+
+    public void updateSellIn(Integer sellIn) {
+        this.sellIn = sellIn;
+    }
+
+    public void updateQuality(Integer quality) {
+        this.quality= quality;
+    }
 }
