@@ -5,7 +5,8 @@ public class CommonProductService {
         if (product.getSellIn() > 0) {
             product.updateQuality(product.getQuality() - 1);
         } else {
-            product.updateQuality(product.getQuality() - 2);
+            Integer quality = product.getQuality() - 2 >= 0 ? product.getQuality() - 2 : 0;
+            product.updateQuality(quality);
         }
         product.updateSellIn(product.getSellIn() - 1);
 

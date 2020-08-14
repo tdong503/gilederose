@@ -21,13 +21,25 @@ public class CommonProductServiceTests {
     }
 
     @Test
-    public void GivenNotBeforeExpiredAndValidQuality_ThenUpdateProduct_ShouldQualityMinusTwo() {
+    public void GivenJustExpiredAndValidQuality_ThenUpdateProduct_ShouldQualityMinusTwo() {
         Product product = Product.builder().sellIn(0).quality(10).build();
 
         Product result = CommonProductService.updateProduct(product);
 
         Integer expectedQuality = 8;
         Integer expectedSellIn = -1;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
+    }
+
+    @Test
+    public void GivenExpiredAndQualityIsOne_ThenUpdateProduct_ShouldQualityMinusOne() {
+        Product product = Product.builder().sellIn(-1).quality(1).build();
+
+        Product result = CommonProductService.updateProduct(product);
+
+        Integer expectedQuality = 0;
+        Integer expectedSellIn = -2;
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
     }
