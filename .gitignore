@@ -21,3 +21,35 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/logs/*
+.gradle/*
+.idea/*
+.mvn/*
+/.idea
+product-presentment.iml
+target/
+application.tar
+build.hwm
+build.pwd
+build.pwi
+log/
+logs/
+output/*
+*.retry
+LOG_FILE_IS_UNDEFINED*
+src/main/resources/certs/*.cer
+src/main/resources/certs/*.key
+*.DS_Store
+*.iml
+.gitconfig
+node_modules/*
+nohup.out
+reports/*
+classes/*
+ops/ansible/output
+**/*/.idea/
+.m2/*
+build/*
