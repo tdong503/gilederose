@@ -41,4 +41,16 @@ public class BackstagePassServiceTests {
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
     }
+
+    @Test
+    public void GivenExpiredSellInAndValidQuality_WhenUpdateProduct_ThenQualityIsZero() {
+        Product product = Product.builder().sellIn(0).quality(20).build();
+
+        Product result = BackstagePassService.updateProduct(product);
+
+        Integer expectedQuality = 0;
+        Integer expectedSellIn = -1;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
+    }
 }
