@@ -2,6 +2,8 @@ package com.dongbiao.gilederose;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CommonProductServiceTests {
 
     @Test
@@ -10,5 +12,7 @@ public class CommonProductServiceTests {
 
         Product result = CommonProductService.updateProduct(product);
 
+        assertEquals(9, result.getQuality());
+        assertEquals(39, result.getSellIn());
     }
 }
