@@ -9,12 +9,26 @@ public class CommonProductServiceTests {
 
     @DisplayName("Update common product and can reduce quality.")
     @Test
-    public void GivenBeforeExpiredAndValidQuality_ThenUpdateProduct_ShouldUpdateSuccess() {
+    public void GivenBeforeExpiredAndValidQuality_ThenUpdateProduct_ShouldQualityMinusOne() {
         Product product = Product.builder().sellIn(40).quality(10).build();
 
         Product result = CommonProductService.updateProduct(product);
 
-        assertEquals(9, result.getQuality());
-        assertEquals(39, result.getSellIn());
+        Integer expectedQuality = 9;
+        Integer expectedSellIn = 39;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
+    }
+
+    @Test
+    public void GivenNotBeforeExpiredAndValidQuality_ThenUpdateProduct_ShouldQualityMinusTwo() {
+        Product product = Product.builder().sellIn(0).quality(10).build();
+
+        Product result = CommonProductService.updateProduct(product);
+
+        Integer expectedQuality = 8;
+        Integer expectedSellIn = -1;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
     }
 }
