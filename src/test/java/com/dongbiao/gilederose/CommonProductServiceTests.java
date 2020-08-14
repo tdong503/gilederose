@@ -7,15 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommonProductServiceTests {
 
+    private Integer beforeExpiredSellIn = 30;
+
     @DisplayName("Update common product and can reduce quality.")
     @Test
     public void GivenBeforeExpiredAndValidQuality_ThenUpdateProduct_ShouldQualityMinusOne() {
-        Product product = Product.builder().sellIn(40).quality(10).build();
+        Product product = Product.builder().sellIn(beforeExpiredSellIn).quality(10).build();
 
         Product result = CommonProductService.updateProduct(product);
 
         Integer expectedQuality = 9;
-        Integer expectedSellIn = 39;
+        Integer expectedSellIn = 29;
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
     }
@@ -40,6 +42,18 @@ public class CommonProductServiceTests {
 
         Integer expectedQuality = 0;
         Integer expectedSellIn = -2;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
+    }
+
+    @Test
+    public void GivenBeforeExpiredAndQualityIsOne_ThenUpdateProduct_ShouldQualityMinusOne() {
+        Product product = Product.builder().sellIn(beforeExpiredSellIn).quality(1).build();
+
+        Product result = CommonProductService.updateProduct(product);
+
+        Integer expectedQuality = 0;
+        Integer expectedSellIn = 29;
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
     }
