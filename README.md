@@ -10,6 +10,12 @@
 2. 建立商品Model，具有2个属性
 3. 设置条件公共类
 4. common商品的update方法
+    a. SellIn > 0, Quality -= 1
+    b. SellIn <= 0, Quality -= 2
 5. Backstage pass的更新方法
-6. 做一个入口方法模拟每天执行更新方法
+    a. 10 >= SellIn >5, Quality += 2
+    b. 5 >= SellIn > 0, Quality += 3
+    c. 0 >= Quality, Quality = 0 
+6. 创建validation类，如果不需要更新，则不用继续执行update方法
+7. 做一个入口方法模拟每天执行更新方法
 
