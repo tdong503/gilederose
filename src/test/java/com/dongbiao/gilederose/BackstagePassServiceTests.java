@@ -17,4 +17,16 @@ public class BackstagePassServiceTests {
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
     }
+
+    @Test
+    public void GivenSellInBetweenTenAndFiveAndValidQuality_WhenUpdateProduct_ThenQualityPlusTwo() {
+        Product product = Product.builder().sellIn(7).quality(20).build();
+
+        Product result = BackstagePassService.updateProduct(product);
+
+        Integer expectedQuality = 22;
+        Integer expectedSellIn = 6;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
+    }
 }
