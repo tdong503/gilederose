@@ -10,7 +10,9 @@ public class BackstagePassServiceTests {
 
     @Test
     public void GivenSellInMoreThanTenAndValidQuality_WhenUpdateProduct_ThenQualityNoChange() {
-        Product product = Product.builder().sellIn(30).quality(20).build();
+        Integer sellInMoreThanTen = 30;
+        Integer validQuality = 20;
+        Product product = Product.builder().sellIn(sellInMoreThanTen).quality(validQuality).build();
 
         Product result = BackstagePassService.updateProduct(product);
 
@@ -22,7 +24,9 @@ public class BackstagePassServiceTests {
 
     @Test
     public void GivenSellInBetweenTenAndFiveAndValidQuality_WhenUpdateProduct_ThenQualityPlusTwo() {
-        Product product = Product.builder().sellIn(7).quality(20).build();
+        Integer sellInBetweenTenAndFive = 7;
+        Integer validQuality = 20;
+        Product product = Product.builder().sellIn(sellInBetweenTenAndFive).quality(validQuality).build();
 
         Product result = BackstagePassService.updateProduct(product);
 
@@ -34,7 +38,9 @@ public class BackstagePassServiceTests {
 
     @Test
     public void GivenSellInBetweenFiveAndZeroAndValidQuality_WhenUpdateProduct_ThenQualityPlusThree() {
-        Product product = Product.builder().sellIn(4).quality(20).build();
+        Integer sellInBetweenFiveAndZero = 4;
+        Integer validQuality = 20;
+        Product product = Product.builder().sellIn(sellInBetweenFiveAndZero).quality(validQuality).build();
 
         Product result = BackstagePassService.updateProduct(product);
 
@@ -46,7 +52,9 @@ public class BackstagePassServiceTests {
 
     @Test
     public void GivenExpiredSellInAndValidQuality_WhenUpdateProduct_ThenQualityIsZero() {
-        Product product = Product.builder().sellIn(0).quality(20).build();
+        Integer expiredSellIn = 0;
+        Integer validQuality = 20;
+        Product product = Product.builder().sellIn(expiredSellIn).quality(validQuality).build();
 
         Product result = BackstagePassService.updateProduct(product);
 
@@ -57,8 +65,9 @@ public class BackstagePassServiceTests {
     }
 
     @Test
-    public void GivenSellInBetweenTenAndFiveAndQualityIsFifty_ThenUpdateProduct_ShouldQualityNoChange() {
-        Product product = Product.builder().sellIn(7).quality(50).build();
+    public void GivenSellInBetweenTenAndFiveAndQualityIsMaxQuality_ThenUpdateProduct_ShouldQualityNoChange() {
+        Integer sellInBetweenTenAndFive = 7;
+        Product product = Product.builder().sellIn(sellInBetweenTenAndFive).quality(MAX_PRODUCT_QUALITY).build();
 
         Product result = BackstagePassService.updateProduct(product);
 
@@ -69,13 +78,14 @@ public class BackstagePassServiceTests {
     }
 
     @Test
-    public void GivenSellInBetweenFiveAndZeroAndQualityIsFifty_ThenUpdateProduct_ShouldQualityNoChange() {
-        Product product = Product.builder().sellIn(3).quality(50).build();
+    public void GivenSellInBetweenFiveAndZeroAndQualityIsMaxQuality_ThenUpdateProduct_ShouldQualityNoChange() {
+        Integer sellInBetweenFiveAndZero = 4;
+        Product product = Product.builder().sellIn(sellInBetweenFiveAndZero).quality(MAX_PRODUCT_QUALITY).build();
 
         Product result = BackstagePassService.updateProduct(product);
 
         Integer expectedQuality = MAX_PRODUCT_QUALITY;
-        Integer expectedSellIn = 2;
+        Integer expectedSellIn = 3;
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
     }
