@@ -5,7 +5,8 @@ import static com.dongbiao.gilederose.Config.MIN_PRODUCT_QUALITY;
 public class CommonProductService {
     public static Product updateProduct(Product product) {
         if (product.getSellIn() > 0) {
-            product.updateQuality(product.getQuality() - 1);
+            Integer quality = Math.max(product.getQuality() - 1, MIN_PRODUCT_QUALITY);
+            product.updateQuality(quality);
         } else {
             Integer quality = Math.max(product.getQuality() - 2, MIN_PRODUCT_QUALITY);
             product.updateQuality(quality);
