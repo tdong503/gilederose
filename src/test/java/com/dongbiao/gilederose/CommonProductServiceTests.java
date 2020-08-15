@@ -3,6 +3,7 @@ package com.dongbiao.gilederose;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.dongbiao.gilederose.Config.MIN_PRODUCT_QUALITY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommonProductServiceTests {
@@ -40,7 +41,7 @@ public class CommonProductServiceTests {
 
         Product result = CommonProductService.updateProduct(product);
 
-        Integer expectedQuality = 0;
+        Integer expectedQuality = MIN_PRODUCT_QUALITY;
         Integer expectedSellIn = -2;
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
@@ -52,7 +53,7 @@ public class CommonProductServiceTests {
 
         Product result = CommonProductService.updateProduct(product);
 
-        Integer expectedQuality = 0;
+        Integer expectedQuality = MIN_PRODUCT_QUALITY;
         Integer expectedSellIn = 29;
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());

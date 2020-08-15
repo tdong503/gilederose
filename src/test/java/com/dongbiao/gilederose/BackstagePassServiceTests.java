@@ -2,6 +2,8 @@ package com.dongbiao.gilederose;
 
 import org.junit.jupiter.api.Test;
 
+import static com.dongbiao.gilederose.Config.MAX_PRODUCT_QUALITY;
+import static com.dongbiao.gilederose.Config.MIN_PRODUCT_QUALITY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BackstagePassServiceTests {
@@ -48,8 +50,32 @@ public class BackstagePassServiceTests {
 
         Product result = BackstagePassService.updateProduct(product);
 
-        Integer expectedQuality = 0;
+        Integer expectedQuality = MIN_PRODUCT_QUALITY;
         Integer expectedSellIn = -1;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
+    }
+
+    @Test
+    public void GivenSellInBetweenTenAndFiveAndQualityIsFifty_ThenUpdateProduct_ShouldQualityNoChange() {
+        Product product = Product.builder().sellIn(7).quality(50).build();
+
+        Product result = BackstagePassService.updateProduct(product);
+
+        Integer expectedQuality = MAX_PRODUCT_QUALITY;
+        Integer expectedSellIn = 6;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
+    }
+
+    @Test
+    public void GivenSellInBetweenFiveAndZeroAndQualityIsFifty_ThenUpdateProduct_ShouldQualityNoChange() {
+        Product product = Product.builder().sellIn(3).quality(50).build();
+
+        Product result = BackstagePassService.updateProduct(product);
+
+        Integer expectedQuality = MAX_PRODUCT_QUALITY;
+        Integer expectedSellIn = 2;
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
     }

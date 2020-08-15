@@ -1,12 +1,16 @@
 package com.dongbiao.gilederose;
 
+import static com.dongbiao.gilederose.Config.MAX_PRODUCT_QUALITY;
+
 public class BackstagePassService {
     public static Product updateProduct(Product product) {
         if (product.getSellIn() <= 10) {
             if (product.getSellIn() > 5) {
-                product.updateQuality(product.getQuality() + 2);
+                Integer quality = Math.min(product.getQuality() + 2, MAX_PRODUCT_QUALITY);
+                product.updateQuality(quality);
             } else if (product.getSellIn() > 0) {
-                product.updateQuality(product.getQuality() + 3);
+                Integer quality = Math.min(product.getQuality() + 3, MAX_PRODUCT_QUALITY);
+                product.updateQuality(quality);
             } else {
                 product.updateQuality(0);
             }
