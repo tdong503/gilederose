@@ -64,4 +64,18 @@ public class CommonProductServiceTests {
         assertEquals(expectedQuality, result.getQuality());
         assertEquals(expectedSellIn, result.getSellIn());
     }
+
+    @Test
+    public void GivenExpiredAndQualityIsZero_ThenUpdateProduct_ShouldQualityNoChange() {
+        Integer beforeExpiredSellIn = 0;
+        Integer quality = 0;
+        Product product = Product.builder().sellIn(beforeExpiredSellIn).quality(quality).build();
+
+        Product result = CommonProductService.updateProduct(product);
+
+        Integer expectedQuality = MIN_PRODUCT_QUALITY;
+        Integer expectedSellIn = -1;
+        assertEquals(expectedQuality, result.getQuality());
+        assertEquals(expectedSellIn, result.getSellIn());
+    }
 }
