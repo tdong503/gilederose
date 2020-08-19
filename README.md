@@ -15,7 +15,7 @@
     c. edge case: 
         i. SellIn > 0, Quality already is 0
 5. Backstage pass的更新方法
-    a. SellIn > 10, Quality不变
+    a. SellIn > 10, Quality += 1
     b. 10 >= SellIn >5, Quality += 2
     c. 5 >= SellIn > 0, Quality += 3
     d. 0 >= Quality, Quality = 0 
